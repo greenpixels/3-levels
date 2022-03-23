@@ -1,4 +1,4 @@
-#    <one line to give the program's name and a brief idea of what it does.>
+#    A simple jump-and-run game-project made with godot.
 #    Copyright (C) 2022 Sven | greenpixels_
 #
 #    This program is free software: you can redistribute it and/or modify
