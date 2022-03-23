@@ -1,2 +1,4 @@
 *.wav
 *.mp3
+/builds
+/build
