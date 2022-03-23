@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/exit/Exit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EndTimerText.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Main.gd" type="Script" id=7]
 [ext_resource path="res://assets/images/light.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/Tileset.png" type="Texture" id=9]
-[ext_resource path="res://assets/monogram.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://assets/images/Decor.png" type="Texture" id=11]
 [ext_resource path="res://HTTPGetHighscores.gd" type="Script" id=12]
 [ext_resource path="res://monogram.ttf" type="DynamicFontData" id=13]
@@ -42,13 +41,13 @@ region = Rect2( 0, 0, 352, 160 )
 0/z_index = 0
 
 [sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 10 )
+font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 10 )
+font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 10 )
+font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 8

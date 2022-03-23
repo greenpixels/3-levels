@@ -76,25 +76,25 @@ func _physics_process(delta):
 	
 	animation_player.playback_speed = (abs(velocity.x)/MAX_SPEED) + 0.5;	
 
-func _on_exit_area_entered(body):
+func _on_exit_area_entered(_body):
 	## Switch scenes when colliding with exit-door
 	var current_scene : String = get_tree().get_current_scene().get_name();
+	var _is_ok : bool;
 	match(current_scene):
 		"Level1" : 
-			get_tree().change_scene("res://Level2.tscn");
+			_is_ok = get_tree().change_scene("res://Level2.tscn");
 		"Level2" : 
-			get_tree().change_scene("res://Level3.tscn");
+			_is_ok = get_tree().change_scene("res://Level3.tscn");
 		"Level3" : 
-			get_tree().change_scene("res://Level4.tscn");
+			_is_ok = get_tree().change_scene("res://Level4.tscn");
 		"Level4" : 
-			get_tree().change_scene("res://Level1.tscn");
+			_is_ok = get_tree().change_scene("res://Level1.tscn");
 			Global.time = 0;
-
 
 ## Toggle leaderboard-camera
 func _on_Highscorelist_player_entered_highscorelist(camera : Camera2D):
 	camera.make_current();
-func _on_Highscorelist_player_exited_highscorelist(camera  : Camera2D):
+func _on_Highscorelist_player_exited_highscorelist(_camera  : Camera2D):
 	$Camera2D.make_current();
 	
 	
