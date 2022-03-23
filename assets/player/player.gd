@@ -6,8 +6,8 @@ const GRAV : float = 600.0;
 const JUMP_STRENGTH : float = 190.0;
 var velocity : Vector2 = Vector2.ZERO;
 var vsp : float = 0.0;
-var wall_jump_timer = 0;
-const WALL_JUMP_TIME = 0.5;
+var wall_jump_timer : float = 0.0;
+const WALL_JUMP_TIME : float = 0.5;
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer;
 onready var sprite : Sprite = $Sprite;
@@ -72,8 +72,8 @@ func _physics_process(delta):
 	animation_player.playback_speed = (abs(velocity.x)/MAX_SPEED) + 0.5;	
 
 func _on_exit_area_entered(body):
-	var current_scene = get_tree().get_current_scene().get_name();
-	
+	## Switch scenes when colliding with exit-door
+	var current_scene : String = get_tree().get_current_scene().get_name();
 	match(current_scene):
 		"Level1" : 
 			get_tree().change_scene("res://Level2.tscn");
@@ -85,9 +85,9 @@ func _on_exit_area_entered(body):
 			get_tree().change_scene("res://Level1.tscn");
 			Global.time = 0;
 
+
+## Toggle leaderboard-camera
 func _on_Highscorelist_player_entered_highscorelist(camera : Camera2D):
 	camera.make_current();
-
-
-func _on_Highscorelist_player_exited_highscorelist(camera):
+func _on_Highscorelist_player_exited_highscorelist(camera  : Camera2D):
 	$Camera2D.make_current();
