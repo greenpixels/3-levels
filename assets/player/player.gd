@@ -73,7 +73,6 @@ func _physics_process(delta):
 
 func _on_exit_area_entered(body):
 	var current_scene = get_tree().get_current_scene().get_name();
-	print(current_scene)
 	
 	match(current_scene):
 		"Level1" : 
@@ -85,13 +84,6 @@ func _on_exit_area_entered(body):
 		"Level4" : 
 			get_tree().change_scene("res://Level1.tscn");
 			Global.time = 0;
-	
-
-
-func _on_highscorelist_body_entered(body):
-	print("hello")
-	
-
 
 func _on_Highscorelist_player_entered_highscorelist(camera : Camera2D):
 	camera.make_current();
