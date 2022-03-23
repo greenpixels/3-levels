@@ -151,7 +151,7 @@ shape = SubResource( 4 )
 position = Vector2( 0, -8 )
 z_index = 1
 texture = ExtResource( 2 )
-texture_scale = 0.07
+texture_scale = 0.03
 
 [node name="FootStepSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -163,4 +163,4 @@ stream = ExtResource( 4 )
 stream = ExtResource( 5 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.113725, 0.584314, 0.498039, 1 )
+color = Color( 0.235294, 0.188235, 0.364706, 1 )
