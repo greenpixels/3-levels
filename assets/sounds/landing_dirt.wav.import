@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/landing_dirt.wav-dce9d484f6f8650f02db9d965a9279af.sample"
+
+[deps]
+
+source_file="res://assets/sounds/landing_dirt.wav"
+dest_files=[ "res://.import/landing_dirt.wav-dce9d484f6f8650f02db9d965a9279af.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

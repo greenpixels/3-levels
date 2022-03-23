@@ -161,6 +161,7 @@ stream = ExtResource( 4 )
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -5.923
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.235294, 0.188235, 0.364706, 1 )

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/exit/Entry.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/timer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/timer/timer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tilesets/tileset_mine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/camera/camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/player/player.tscn" type="PackedScene" id=5]
@@ -76,7 +76,6 @@ position = Vector2( 1564, -225 )
 position = Vector2( -92, 255 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-visible = false
 position = Vector2( -76, 271 )
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 4 )]
