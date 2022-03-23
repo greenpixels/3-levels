@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const MAX_SPEED : float = 150.0;
 const ACCELERATION : float = 800.0;
-const GRAV : float = 600.0;
+const GRAV : float = 5000.0;
 const JUMP_STRENGTH : float = 190.0;
 var velocity : Vector2 = Vector2.ZERO;
 var vsp : float = 0.0;
@@ -28,8 +28,8 @@ func _physics_process(delta):
 		velocity.x = sign(velocity.x)*MAX_SPEED;
 	
 	## Vertical movement
-	if(vsp < 10):
-		vsp+=GRAV;
+	if(vsp < 800):
+		vsp+=GRAV*delta;
 	
 	### Wall Jump
 	if(is_on_wall() and !is_on_floor()):
@@ -39,6 +39,7 @@ func _physics_process(delta):
 			velocity.y = 0.0;
 			vsp = 0.0;
 			if(Input.is_action_just_pressed("ui_up")):
+				$JumpSound.play();
 				velocity.y-=JUMP_STRENGTH;
 				velocity.x-=horizontal_input*(JUMP_STRENGTH/2);
 			else:
@@ -46,14 +47,18 @@ func _physics_process(delta):
 	
 	### Jump
 	if(is_on_floor()):
-		vsp = 0.0;
+		vsp = 0;
 		if(Input.is_action_just_pressed("ui_up")):
 			velocity.y-=JUMP_STRENGTH;
+			$JumpSound.play();
 	 
 	velocity.y+=vsp*delta;
 
 	## Apply collision
-	velocity = move_and_slide(velocity, Vector2(0, -1));
+	var was_on_floor : bool = is_on_floor();
+	velocity = move_and_slide(velocity, Vector2(0, -1), true);
+	if(is_on_floor() and !was_on_floor):
+		$LandSound.play();
 	
 	## Set animation
 	if(velocity.y > 0.0):
@@ -91,3 +96,5 @@ func _on_Highscorelist_player_entered_highscorelist(camera : Camera2D):
 	camera.make_current();
 func _on_Highscorelist_player_exited_highscorelist(camera  : Camera2D):
 	$Camera2D.make_current();
+	
+	
