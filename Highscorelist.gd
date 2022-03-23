@@ -16,7 +16,8 @@
 
 extends Area2D
 
-onready var list : ItemList = $Entries;
+onready var mono_font : Font = preload("res://Monogram.tres");
+onready var list : VBoxContainer = $Panel/ScrollContainer/Entries
 onready var camera : Camera2D = $Camera2D;
 signal player_entered_highscorelist(camera);
 signal player_exited_highscorelist(camera);
@@ -31,10 +32,23 @@ func _on_highscorelist_body_exited(_body : Object):
 func _on_HTTPGetHighscores_request_completed(_result, _response_code, _headers, body):
 	var json : JSONParseResult = JSON.parse(body.get_string_from_utf8());
 	if (json.error == OK):
-		var entries = json.result.highscores;
-		var index = 0;
+		var entries : Array = json.result.highscores;
+		var index : int = 0;
+		
+		# Loop through the received highscore array
 		while index < entries.size():
 			var time : float = entries[index][0];
 			var name : String = entries[index][1];
-			list.add_item((index + 1) as String + ")  %.3f sec/s by %s" % [time, name]);
+			
+			# Create a new Label for every entry, style it and ...
+			var label : RichTextLabel = RichTextLabel.new();
+			label.rect_min_size = Vector2(list.get_parent_area_size().x, 0);
+			label.bbcode_enabled = true;
+			label.bbcode_text = (index + 1) as String + ".[indent]%.3f sec/s by %s[/indent]" % [time, name];
+			mono_font.size = 8;
+			label.add_font_override("normal_font", mono_font);
+			label.fit_content_height = true;
+			
+			# ... add it to the list parent
+			list.add_child(label);
 			index+=1;
