@@ -14,6 +14,10 @@ config/name="3Levels"
 run/main_scene="res://Level1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [debug]
 
 settings/fps/force_fps=30

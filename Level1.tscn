@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/images/Decor.png" type="Texture" id=1]
-[ext_resource path="res://assets/timer/timer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/timer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tilesets/tileset_mine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/camera/camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/player/player.tscn" type="PackedScene" id=5]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Main.gd" type="Script" id=7]
 [ext_resource path="res://assets/images/light.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/Tileset.png" type="Texture" id=9]
-[ext_resource path="res://assets/monogram.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 9 )
@@ -38,9 +37,6 @@ region = Rect2( 0, 0, 352, 160 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 10 )
-
 [node name="Level1" type="Node2D"]
 position = Vector2( -28, 585 )
 script = ExtResource( 7 )
@@ -64,7 +60,6 @@ tile_data = PoolIntArray( -1572894, 0, 0, -1572893, 0, 1, -1572892, 0, 1, -15728
 
 [node name="Exit" parent="." instance=ExtResource( 6 )]
 position = Vector2( -564, -481 )
-scale = Vector2( 1, 1 )
 
 [node name="Decoration" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
@@ -77,27 +72,18 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( -13, 271 )
+position = Vector2( -12, 271 )
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 4 )]
 zoom = Vector2( 0.75, 0.75 )
 smoothing_enabled = true
 
 [node name="Light2D" type="Light2D" parent="Player"]
-position = Vector2( 0, -2 )
 texture = ExtResource( 8 )
 texture_scale = 0.58
 energy = 0.55
 shadow_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" parent="CanvasLayer" instance=ExtResource( 2 )]
-margin_top = 5.0
-margin_right = 320.0
-margin_bottom = 97.0
-custom_fonts/normal_font = SubResource( 2 )
-text = "0"
-fit_content_height = true
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
 
 [connection signal="body_entered" from="Exit" to="Player" method="_on_exit_area_entered"]

@@ -1,5 +1,5 @@
 extends RichTextLabel
 
-func _physics_process(delta):
-	Global.time+=delta;
+
+func _ready():
 	bbcode_text="[center]%.3f sec/s[/center]" % (Global.time)

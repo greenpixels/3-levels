@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://assets/timer/timer.gd" type="Script" id=1]
-
-[node name="RichTextLabel" type="RichTextLabel"]
-margin_right = 250.0
-margin_bottom = 40.0
-bbcode_enabled = true
-script = ExtResource( 1 )

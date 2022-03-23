@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/player/player.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/light.png" type="Texture" id=2]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/Miner.png-8d4bbc8f0b15ca34f13312e8f0297dac.stex"
@@ -125,3 +126,9 @@ anims/Slide = SubResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6 )
 shape = SubResource( 4 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 0, -8 )
+z_index = 1
+texture = ExtResource( 2 )
+texture_scale = 0.07
