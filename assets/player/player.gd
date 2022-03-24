@@ -24,6 +24,9 @@ var velocity : Vector2 = Vector2.ZERO;
 var vsp : float = 0.0;
 var wall_jump_timer : float = 0.0;
 const WALL_JUMP_TIME : float = 0.5;
+var coyote_timer : float = 0.0;
+var has_jumped : bool = false;
+const COYOTE_TIME : float = 0.1;
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer;
 onready var sprite : Sprite = $Sprite;
@@ -62,10 +65,13 @@ func _physics_process(delta):
 				wall_jump_timer-=delta;
 	
 	### Jump
-	if(is_on_floor()):
-		vsp = 0;
+	if((is_on_floor() or coyote_timer > 0) and !has_jumped):
+		if(is_on_floor()):
+			vsp = 0;
+			coyote_timer = 0;
 		if(Input.is_action_just_pressed("ui_up")):
-			velocity.y-=JUMP_STRENGTH;
+			has_jumped = true;
+			velocity.y=-JUMP_STRENGTH;
 			$JumpSound.play();
 	 
 	velocity.y+=vsp*delta;
@@ -75,6 +81,13 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0, -1), true);
 	if(is_on_floor() and !was_on_floor):
 		$LandSound.play();
+		has_jumped = false;
+		
+	if(was_on_floor and !is_on_floor()):
+		coyote_timer = COYOTE_TIME;
+		
+	if(coyote_timer > 0):
+		coyote_timer -= delta;
 	
 	## Set animation
 	if(velocity.y > 0.0):
