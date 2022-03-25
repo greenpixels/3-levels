@@ -60,7 +60,11 @@ func _physics_process(delta):
 			if(Input.is_action_just_pressed("ui_up")):
 				$JumpSound.play();
 				velocity.y-=JUMP_STRENGTH;
-				velocity.x-=horizontal_input*(JUMP_STRENGTH/2);
+				## Depending on flip_h we jump 'away' from the wall
+				if(sprite.flip_h):
+					velocity.x+=(JUMP_STRENGTH/2);
+				else:
+					velocity.x-=(JUMP_STRENGTH/2);
 			else:
 				wall_jump_timer-=delta;
 	
