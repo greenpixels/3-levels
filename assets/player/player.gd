@@ -41,7 +41,7 @@ func _physics_process(delta):
 	else:
 		velocity.x -= sign(velocity.x)*ACCELERATION*delta;
 		if(abs(velocity.x) < ACCELERATION*delta):
-			 velocity.x = 0.0;
+			velocity.x = 0.0;
 
 	if(abs(velocity.x) > MAX_SPEED):
 		velocity.x = sign(velocity.x)*MAX_SPEED;
@@ -107,20 +107,28 @@ func _physics_process(delta):
 			else:
 				animation_player.play("Idle");
 	
-	animation_player.playback_speed = (abs(velocity.x)/MAX_SPEED) + 0.5;	
+	animation_player.playback_speed = (abs(velocity.x)/MAX_SPEED) + 0.5;
+
+func _process(delta):
+	if Input.get_action_strength("restart"):
+		restart_game()
+
+func restart_game():
+	get_tree().change_scene("res://Level1.tscn");
+	Global.time = 0;
 
 func _on_exit_area_entered(_body):
 	## Switch scenes when colliding with exit-door
 	var current_scene : String = get_tree().get_current_scene().get_name();
 	var _is_ok : bool;
 	match(current_scene):
-		"Level1" : 
+		"Level1" :
 			_is_ok = get_tree().change_scene("res://Level2.tscn");
-		"Level2" : 
+		"Level2" :
 			_is_ok = get_tree().change_scene("res://Level3.tscn");
-		"Level3" : 
+		"Level3" :
 			_is_ok = get_tree().change_scene("res://Level4.tscn");
-		"Level4" : 
+		"Level4" :
 			_is_ok = get_tree().change_scene("res://Level1.tscn");
 			Global.time = 0;
 
